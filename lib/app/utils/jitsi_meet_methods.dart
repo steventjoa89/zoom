@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:jitsi_meet/feature_flag/feature_flag.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:zoom/app/auth/auth_methods.dart';
+import 'package:zoom/app/utils/firestore_methods.dart';
 
 class JitsiMeetMethod {
   final AuthMethods _authMethods = AuthMethods();
+  final FirestoreMethods _firestoreMethods = FirestoreMethods();
 
   void createMeeting(
       {required String roomName,
@@ -31,6 +33,7 @@ class JitsiMeetMethod {
         ..videoMuted = isVideoMuted;
       // ..featureFlag = featureFlag;
 
+      _firestoreMethods.addToMeetingHistory(roomName);
       await JitsiMeet.joinMeeting(options);
     } catch (error) {
       debugPrint("error: $error");
