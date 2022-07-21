@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "815859508668-9ij58cg71u76ui18pdru60on46jg9jp7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.zoom",
+            "certificate_hash": "37d0a55c6cbfd9d70ed194a711f0882c95dcd8d0"
+          }
+        },
+        {
           "client_id": "815859508668-87fns1kiboeldv380a22hqa8fg0ql7tl.apps.googleusercontent.com",
           "client_type": 3
         }

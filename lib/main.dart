@@ -4,6 +4,7 @@ import 'package:zoom/app/auth/auth_methods.dart';
 import 'package:zoom/app/constants/colors.dart';
 import 'package:zoom/app/modules/screens/home_screen.dart';
 import 'package:zoom/app/modules/screens/login_screen.dart';
+import 'package:zoom/app/modules/screens/video_call_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginScreen(),
         '/home': (context) => HomeScreen(),
+        '/video-call': (context) => VideoCallScreen(),
       },
       // home: const LoginScreen(),
       home: StreamBuilder(

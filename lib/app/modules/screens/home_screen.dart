@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zoom/app/constants/colors.dart';
-import 'package:zoom/app/widgets/home_meeting_button.dart';
+import 'package:zoom/app/modules/screens/history_meeting_screen.dart';
+import 'package:zoom/app/modules/screens/meeting_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,6 +18,13 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  List<Widget> pages = [
+    MeetingScreen(),
+    const HistoryMeetingScreen(),
+    const Text('Contacts'),
+    const Text('Settings'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,43 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Meet & Chat'),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              HomeMeetingButton(
-                onPress: () {},
-                icon: Icons.videocam,
-                text: 'New Meeting',
-              ),
-              HomeMeetingButton(
-                onPress: () {},
-                icon: Icons.add_box_rounded,
-                text: 'Join Meeting',
-              ),
-              HomeMeetingButton(
-                onPress: () {},
-                icon: Icons.calendar_today,
-                text: 'Schedule Meeting',
-              ),
-              HomeMeetingButton(
-                onPress: () {},
-                icon: Icons.arrow_upward_rounded,
-                text: 'Share Screen',
-              ),
-            ],
-          ),
-          const Expanded(
-            child: Center(
-              child: Text(
-                'Create/Join a meeting with juat a click',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-            ),
-          ),
-        ],
-      ),
+      body: pages[_page],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: footerColor,
         selectedItemColor: Colors.white,
