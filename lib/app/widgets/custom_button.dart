@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:zoom/app/constants/colors.dart';
 
-class CustomButtom extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onPress;
 
-  const CustomButtom({
+  const CustomButton({
     Key? key,
     required this.text,
     required this.onPress,

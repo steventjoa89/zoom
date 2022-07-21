@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:zoom/app/constants/colors.dart';
 import 'package:zoom/app/utils/jitsi_meet_methods.dart';
 import 'package:zoom/app/widgets/home_meeting_button.dart';
 
@@ -31,28 +32,20 @@ class MeetingScreen extends StatelessWidget {
               onPress: createNewMeeting,
               icon: Icons.videocam,
               text: 'New Meeting',
+              buttonColor: mainButtonColor,
             ),
             HomeMeetingButton(
               onPress: () => joinMeeting(context),
               icon: Icons.add_box_rounded,
               text: 'Join Meeting',
-            ),
-            HomeMeetingButton(
-              onPress: () {},
-              icon: Icons.calendar_today,
-              text: 'Schedule Meeting',
-            ),
-            HomeMeetingButton(
-              onPress: () {},
-              icon: Icons.arrow_upward_rounded,
-              text: 'Share Screen',
+              buttonColor: buttonColor,
             ),
           ],
         ),
         const Expanded(
           child: Center(
             child: Text(
-              'Create/Join a meeting with juat a click',
+              'Create or Join a meeting',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
           ),

@@ -58,11 +58,17 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: backgroundColor,
-        title: Text('Join a Meeting', style: TextStyle(fontSize: 18)),
+        title: Text(
+          'Join a Meeting',
+          style: TextStyle(
+              fontSize: 24, color: Colors.black, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       body: Column(
@@ -75,7 +81,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                  fillColor: secondaryBackgroundColor,
+                  fillColor: backgroundColor,
                   filled: true,
                   border: InputBorder.none,
                   hintText: 'Room ID',
@@ -90,7 +96,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                  fillColor: secondaryBackgroundColor,
+                  fillColor: backgroundColor,
                   filled: true,
                   border: InputBorder.none,
                   hintText: 'Name',
@@ -98,16 +104,6 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
             ),
           ),
           const SizedBox(height: 20),
-          InkWell(
-            onTap: _joinMeeting,
-            child: const Padding(
-              padding: EdgeInsets.all(8),
-              child: Text(
-                'Join',
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-          ),
           const SizedBox(height: 20),
           MeetingOption(
             text: 'Mute Mic',
@@ -119,6 +115,33 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
             onChange: onVideoMuted,
             isMute: isVideoMuted,
           ),
+          SizedBox(height: 30),
+          SizedBox(
+            width: size.width * 0.7,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: _joinMeeting,
+              child: Text(
+                'Join',
+                style: TextStyle(fontSize: 16),
+              ),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+            ),
+          ),
+          // InkWell(
+          //   onTap: _joinMeeting,
+          //   child: const Padding(
+          //     padding: EdgeInsets.all(8),
+          //     child: Text(
+          //       'Join',
+          //       style: TextStyle(fontSize: 16),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

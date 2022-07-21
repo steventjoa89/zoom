@@ -3,7 +3,7 @@ import 'package:zoom/app/auth/auth_methods.dart';
 import 'package:zoom/app/constants/colors.dart';
 import 'package:zoom/app/modules/screens/history_meeting_screen.dart';
 import 'package:zoom/app/modules/screens/meeting_screen.dart';
-import 'package:zoom/app/widgets/custom_buttom.dart';
+import 'package:zoom/app/widgets/custom_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,20 +13,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _page = 0;
+  int _page = 1;
   onPageChanged(int page) {
     setState(() {
       _page = page;
     });
   }
 
+  List<String> title = ['Home', 'Meetings', 'Settings'];
+
   @override
   Widget build(BuildContext context) {
     List<Widget> pages = [
       MeetingScreen(),
-      const HistoryMeetingScreen(),
-      const Text('Contacts'),
-      CustomButtom(
+      HistoryMeetingScreen(),
+      CustomButton(
         text: 'Log Out',
         onPress: () async {
           await AuthMethods().signOut();
@@ -39,36 +40,36 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: backgroundColor,
         elevation: 0,
-        title: const Text('Meet & Chat'),
+        title: Text(
+          '${title[_page]}',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w800),
+        ),
         centerTitle: true,
       ),
       body: pages[_page],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: footerColor,
         selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
+        unselectedItemColor: Colors.white,
         currentIndex: _page,
         type: BottomNavigationBarType.fixed,
         unselectedFontSize: 14,
         onTap: onPageChanged,
-        items: const [
+        items: [
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.comment_bank,
+              _page == 0 ? Icons.home : Icons.home_outlined,
             ),
-            label: 'Meet & Chat',
+            label: '${title[0]}',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.lock_clock),
-            label: 'Meetings',
+            icon: Icon(
+                _page == 1 ? Icons.watch_later : Icons.watch_later_outlined),
+            label: '${title[1]}',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Contacts',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings_outlined),
-            label: 'Settings',
+            icon: Icon(_page == 2 ? Icons.settings : Icons.settings_outlined),
+            label: '${title[2]}',
           ),
         ],
       ),
